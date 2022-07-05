@@ -5,5 +5,5 @@ e em °F, de acordo com o formulário sugerido.
 
 
 <div id="header" align="center">
-  <img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="100"/>
+  <img src="https://github.com/profalexmonteiro/logprogpascal/blob/main/exemplo04/windows.PNG" width="200"/>
 </div>
