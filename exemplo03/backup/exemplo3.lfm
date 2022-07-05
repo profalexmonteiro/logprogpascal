@@ -1,0 +1,65 @@
+object Form1: TForm1
+  Left = 397
+  Height = 194
+  Top = 275
+  Width = 471
+  Caption = 'Calculando idade'
+  ClientHeight = 194
+  ClientWidth = 471
+  LCLVersion = '2.0.12.0'
+  object Label1: TLabel
+    Left = 45
+    Height = 15
+    Top = 46
+    Width = 103
+    Caption = 'Ano de nascimento'
+    ParentColor = False
+    OnClick = Label1Click
+  end
+  object Label2: TLabel
+    Left = 45
+    Height = 15
+    Top = 88
+    Width = 51
+    Caption = 'Ano atual'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 45
+    Height = 15
+    Top = 128
+    Width = 29
+    Caption = 'Idade'
+    ParentColor = False
+  end
+  object Edit1: TEdit
+    Left = 160
+    Height = 23
+    Top = 46
+    Width = 80
+    TabOrder = 0
+  end
+  object Edit2: TEdit
+    Left = 160
+    Height = 23
+    Top = 80
+    Width = 80
+    TabOrder = 1
+  end
+  object Edit3: TEdit
+    Left = 160
+    Height = 23
+    Top = 120
+    Width = 80
+    TabOrder = 2
+  end
+  object BitBtn1: TBitBtn
+    Left = 288
+    Height = 98
+    Top = 46
+    Width = 115
+    Caption = 'Calcular'
+    OnClick = BitBtn1Click
+    TabOrder = 3
+  end
+end
