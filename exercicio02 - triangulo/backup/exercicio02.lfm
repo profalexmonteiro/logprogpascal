@@ -1,0 +1,113 @@
+object Form1: TForm1
+  Left = 502
+  Height = 354
+  Top = 207
+  Width = 406
+  Caption = 'Form1'
+  ClientHeight = 354
+  ClientWidth = 406
+  LCLVersion = '2.0.12.0'
+  object Label1: TLabel
+    Left = 96
+    Height = 21
+    Top = 40
+    Width = 203
+    Caption = 'Programa sobre triângulos'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 26
+    Height = 15
+    Top = 98
+    Width = 37
+    Caption = 'Lado A'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 26
+    Height = 15
+    Top = 141
+    Width = 36
+    Caption = 'Lado B'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 24
+    Height = 15
+    Top = 176
+    Width = 37
+    Caption = 'Lado C'
+    ParentColor = False
+  end
+  object EladoA: TEdit
+    Left = 80
+    Height = 23
+    Top = 96
+    Width = 80
+    Alignment = taRightJustify
+    TabOrder = 0
+    Text = '0'
+  end
+  object EladoB: TEdit
+    Left = 80
+    Height = 23
+    Top = 136
+    Width = 80
+    Alignment = taRightJustify
+    TabOrder = 1
+    Text = '0'
+  end
+  object EladoC: TEdit
+    Left = 80
+    Height = 23
+    Top = 176
+    Width = 80
+    Alignment = taRightJustify
+    TabOrder = 2
+    Text = '0'
+  end
+  object MResultado: TMemo
+    Left = 192
+    Height = 90
+    Top = 128
+    Width = 150
+    ReadOnly = True
+    ScrollBars = ssBoth
+    TabOrder = 3
+  end
+  object Btriangulo: TButton
+    Left = 192
+    Height = 25
+    Top = 88
+    Width = 144
+    Caption = 'Formam um triângulo?'
+    OnClick = BtrianguloClick
+    TabOrder = 4
+  end
+  object Blimpar: TButton
+    Left = 85
+    Height = 25
+    Top = 256
+    Width = 75
+    Caption = 'LIMPAR'
+    OnClick = BlimparClick
+    TabOrder = 5
+  end
+  object Bsair: TButton
+    Left = 240
+    Height = 25
+    Top = 256
+    Width = 75
+    Caption = 'SAIR'
+    OnClick = BsairClick
+    TabOrder = 6
+  end
+end
