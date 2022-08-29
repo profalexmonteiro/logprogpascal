@@ -20,7 +20,7 @@ type
     Label2: TLabel;
     Label3: TLabel;
     procedure BitBtn1Click(Sender: TObject);
-    procedure Label1Click(Sender: TObject);
+
   private
 
   public
