@@ -1,0 +1,136 @@
+object Form1: TForm1
+  Left = 750
+  Height = 344
+  Top = 264
+  Width = 512
+  Caption = 'Form1'
+  ClientHeight = 344
+  ClientWidth = 512
+  LCLVersion = '2.0.12.0'
+  object Label1: TLabel
+    Left = 128
+    Height = 15
+    Top = 32
+    Width = 304
+    Caption = 'Potência de Ventilador em Sistemas de Secagem de Grãos'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 248
+    Height = 15
+    Top = 104
+    Width = 114
+    Caption = 'Vazão de Ar (m³/min)'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 248
+    Height = 15
+    Top = 144
+    Width = 102
+    Caption = 'Altura de grãos (m)'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 248
+    Height = 15
+    Top = 184
+    Width = 109
+    Caption = 'Diâmetro do silo (m)'
+    ParentColor = False
+  end
+  object Label5: TLabel
+    Left = 248
+    Height = 15
+    Top = 224
+    Width = 139
+    Caption = 'Rendimento do Ventilador'
+    ParentColor = False
+  end
+  object eVazao: TEdit
+    Left = 400
+    Height = 23
+    Top = 96
+    Width = 80
+    Alignment = taRightJustify
+    TabOrder = 0
+    Text = '0'
+  end
+  object eAltura: TEdit
+    Left = 400
+    Height = 23
+    Top = 135
+    Width = 80
+    Alignment = taRightJustify
+    TabOrder = 1
+    Text = '0'
+  end
+  object eDiametro: TEdit
+    Left = 400
+    Height = 23
+    Top = 176
+    Width = 80
+    Alignment = taRightJustify
+    TabOrder = 2
+    Text = '0'
+  end
+  object eRendimento: TEdit
+    Left = 400
+    Height = 23
+    Top = 216
+    Width = 80
+    Alignment = taRightJustify
+    TabOrder = 3
+    Text = '0'
+  end
+  object ePotencia: TEdit
+    Left = 400
+    Height = 23
+    Top = 272
+    Width = 80
+    Alignment = taRightJustify
+    TabOrder = 4
+    Text = '0'
+  end
+  object bPontecia: TButton
+    Left = 224
+    Height = 25
+    Top = 270
+    Width = 163
+    Caption = 'Potência do Ventilador (cv)'
+    OnClick = bPonteciaClick
+    TabOrder = 5
+  end
+  object bSair: TButton
+    Left = 72
+    Height = 25
+    Top = 270
+    Width = 75
+    Caption = 'Sair'
+    TabOrder = 6
+  end
+  object rgTipo: TRadioGroup
+    Left = 48
+    Height = 105
+    Top = 92
+    Width = 185
+    AutoFill = True
+    Caption = 'Tipo de grão'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 85
+    ClientWidth = 181
+    Items.Strings = (
+      'Arroz'
+      'Milho'
+      'Soja'
+      'Trigo'
+    )
+    TabOrder = 7
+  end
+end

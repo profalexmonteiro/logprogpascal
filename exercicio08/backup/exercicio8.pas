@@ -38,6 +38,8 @@ type
     Label8: TLabel;
     Label9: TLabel;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
 
   public
@@ -81,6 +83,22 @@ begin
   Epopa.Text:=FloatToStr(popA);
   Epopb.Text:=FloatToStr(popB);
 
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  Epopia.Text:='0';
+  Epopib.Text:='0';
+  Etaxaa.Text:='0';
+  Etaxab.Text:='0';
+  Etempo.Text:='0';
+  Epopa.Text:='0';
+  Epopb.Text:='0';
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+  close;
 end;
 
 end.

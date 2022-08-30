@@ -208,6 +208,7 @@ object Form1: TForm1
     Top = 298
     Width = 59
     Caption = 'Limpar'
+    OnClick = Button2Click
     TabOrder = 8
   end
   object Button3: TButton
@@ -216,6 +217,7 @@ object Form1: TForm1
     Top = 298
     Width = 59
     Caption = 'Sair'
+    OnClick = Button3Click
     TabOrder = 9
   end
 end

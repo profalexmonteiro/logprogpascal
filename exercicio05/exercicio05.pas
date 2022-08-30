@@ -25,8 +25,6 @@ type
     Label6: TLabel;
     lIMC: TLabel;
     mResultado: TMemo;
-    rbFeminino: TRadioButton;
-    rbMasculino: TRadioButton;
     rgSexo: TRadioGroup;
     procedure btCalcularClick(Sender: TObject);
     procedure btLimparClick(Sender: TObject);

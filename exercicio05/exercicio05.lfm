@@ -104,23 +104,11 @@ object Form1: TForm1
     ChildSizing.ControlsPerLine = 1
     ClientHeight = 85
     ClientWidth = 181
+    Items.Strings = (
+      'Feminino'
+      'Masculino'
+    )
     TabOrder = 3
-    object rbFeminino: TRadioButton
-      Left = 6
-      Height = 43
-      Top = 0
-      Width = 169
-      Caption = 'Feminino'
-      TabOrder = 0
-    end
-    object rbMasculino: TRadioButton
-      Left = 6
-      Height = 42
-      Top = 43
-      Width = 169
-      Caption = 'Masculino'
-      TabOrder = 1
-    end
   end
   object btCalcular: TButton
     Left = 77
