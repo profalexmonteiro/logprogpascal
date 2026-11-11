@@ -31,19 +31,19 @@ dos caminhos de busca já configurados.
 
 ## Roteiro de aprendizagem
 
-| Etapa | Projeto (arquivo para abrir) | O que praticar |
-| --- | --- | --- |
-| 1 | [exemplo02](exemplo02/exemplo02.lpi) | Entrada, variáveis reais, fórmula e saída: área de um triângulo |
-| 2 | [exemplo03](exemplo03/exemplo03.lpi) | Números inteiros, validação e subtração: diferença entre anos |
-| 3 | [exercicio01](exercicio01/exemplo04.lpi) | Fórmulas, conversão e eventos de botões: Celsius e Fahrenheit |
-| 4 | [exercicio02](exercicio02/exemplo05.lpi) | Condições `if`, operadores lógicos e classificação de triângulos |
-| 5 | [exercicio04](exercicio04/exercicio04.lpi) | Menu, procedimentos de evento e histórico de conversões |
-| 6 | [exercicio05](exercicio05/exemplo06.lpi) | Decisões encadeadas, seleção e cálculo do IMC |
-| 7 | [exercicio06](exercicio06/exercicio06.lpi) | Repetição `while`, sentinela, contador e média |
-| 8 | [exercicio07](exercicio07/exercicio07.lpi) | Seleção `case` e aplicação de uma fórmula por tipo de grão |
-| 9 | [exercicio08](exercicio08/exercicio08.lpi) | Simulação repetida, percentuais e condição de parada |
-| 10 | [exercicio09](exercicio09/exercicio09.lpi) | Reutilização da simulação e apresentação dos dados em gráfico |
-| 11 | [exercicio10](exercicio10/exercicio010.lpi) | Vetores, seleção por índice e composição de cálculos |
+| Etapa | Guia do projeto | Projeto para abrir | O que praticar |
+| --- | --- | --- | --- |
+| 1 | [exemplo02](exemplo02/README.md) | [exemplo02.lpi](exemplo02/exemplo02.lpi) | Entrada, variáveis reais, fórmula e saída: área de um triângulo |
+| 2 | [exemplo03](exemplo03/README.md) | [exemplo03.lpi](exemplo03/exemplo03.lpi) | Números inteiros, validação e subtração: diferença entre anos |
+| 3 | [exercicio01](exercicio01/README.md) | [exemplo04.lpi](exercicio01/exemplo04.lpi) | Fórmulas, conversão e eventos de botões: Celsius e Fahrenheit |
+| 4 | [exercicio02](exercicio02/README.md) | [exemplo05.lpi](exercicio02/exemplo05.lpi) | Condições `if`, operadores lógicos e classificação de triângulos |
+| 5 | [exercicio04](exercicio04/README.md) | [exercicio04.lpi](exercicio04/exercicio04.lpi) | Menu, procedimentos de evento e histórico de conversões |
+| 6 | [exercicio05](exercicio05/README.md) | [exemplo06.lpi](exercicio05/exemplo06.lpi) | Decisões encadeadas, seleção e cálculo do IMC |
+| 7 | [exercicio06](exercicio06/README.md) | [exercicio06.lpi](exercicio06/exercicio06.lpi) | Repetição `while`, sentinela, contador e média |
+| 8 | [exercicio07](exercicio07/README.md) | [exercicio07.lpi](exercicio07/exercicio07.lpi) | Seleção `case` e aplicação de uma fórmula por tipo de grão |
+| 9 | [exercicio08](exercicio08/README.md) | [exercicio08.lpi](exercicio08/exercicio08.lpi) | Simulação repetida, percentuais e condição de parada |
+| 10 | [exercicio09](exercicio09/README.md) | [exercicio09.lpi](exercicio09/exercicio09.lpi) | Reutilização da simulação e apresentação dos dados em gráfico |
+| 11 | [exercicio10](exercicio10/README.md) | [exercicio010.lpi](exercicio10/exercicio010.lpi) | Vetores, seleção por índice e composição de cálculos |
 
 A numeração foi mantida como nos materiais originais: não há pastas
 `exemplo01` ou `exercicio03`. Os nomes dos arquivos `.lpi` também podem diferir
