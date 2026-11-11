@@ -5,7 +5,7 @@ unit exercicio6;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Entradas, Calculos;
 
 type
 
@@ -39,39 +39,39 @@ implementation
 { TForm1 }
 
 procedure TForm1.BdigitarClick(Sender: TObject);
-const
-   sentinela = -1;
 var
-   s_nota : string;
-   nnotas, nota, soma, media : double;
+  texto: string;
+  quantidade: Integer;
+  nota, media: Double;
 begin
-     soma   := 0;
-     nnotas := 0;
-
-     s_nota := InputBox('Digite a nota ou -1 para terminar','NOTA','');
-     nota   := StrToFloat(s_nota);
-
-     if nota <> sentinela then
-       begin
-         while nota <> sentinela do
-         begin
-           nnotas := nnotas + 1;
-           soma   := soma + nota;
-
-           s_nota := InputBox('Digite a nota ou -1 para terminar','NOTA','');
-           nota   := StrToFloat(s_nota);
-         end;
-
-         media := soma/nnotas;
-
-         EnumNotas.Text := FloatToStr(nnotas);
-         Emedia.Text    := FloatToStr(media);
-       end
-     else
-         close;
-
-
-
+  try
+    quantidade := 0;
+    media := 0;
+    while True do
+    begin
+      texto := '';
+      // Cancelar encerra a coleta preservando as notas ja informadas.
+      if not InputQuery('Digite a nota ou -1 para terminar', 'NOTA:', texto) then Break;
+      if not TentarNumero(texto, nota) then
+      begin
+        ShowMessage('Informe uma nota numerica ou -1 para terminar.');
+        Continue;
+      end;
+      if nota = -1 then Break;
+      if nota < 0 then
+      begin
+        ShowMessage('A nota nao pode ser negativa. Use -1 para terminar.');
+        Continue;
+      end;
+      Inc(quantidade);
+      media := media + (nota - media) / quantidade;
+    end;
+    EnumNotas.Text := IntToStr(quantidade);
+    Emedia.Text := FloatToStr(media);
+  except
+    on E: EMathError do
+      ShowMessage('Os valores informados excedem os limites do calculo.');
+  end;
 end;
 
 procedure TForm1.BlimparClick(Sender: TObject);
@@ -86,4 +86,3 @@ begin
 end;
 
 end.
-

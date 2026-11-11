@@ -46,6 +46,7 @@ object Form1: TForm1
     TabOrder = 1
   end
   object Edit3: TEdit
+    ReadOnly = True
     Left = 160
     Height = 23
     Top = 120

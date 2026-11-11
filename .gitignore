@@ -1,1 +1,15 @@
 *.exe
+
+# Arquivos gerados pelo Free Pascal e Lazarus
+lib/
+*.o
+*.obj
+*.ppu
+*.compiled
+*.lps
+backup/
+*.bak
+*~
+
+# Saida dos testes locais
+tests/bin/

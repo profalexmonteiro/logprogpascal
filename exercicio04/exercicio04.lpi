@@ -52,6 +52,7 @@
       <Filename Value="exercicio04"/>
     </Target>
     <SearchPaths>
+      <OtherUnitFiles Value="..\comum"/>
       <IncludeFiles Value="$(ProjOutDir)"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>

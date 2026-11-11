@@ -22,7 +22,6 @@ object Form1: TForm1
     Width = 13
     Caption = 'ºC'
     ParentColor = False
-    OnClick = Label2Click
   end
   object Label3: TLabel
     Left = 234

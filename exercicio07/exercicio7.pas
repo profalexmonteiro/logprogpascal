@@ -5,7 +5,7 @@ unit exercicio7;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Entradas, Calculos;
 
 type
 
@@ -25,7 +25,6 @@ type
     procedure bLimparClick(Sender: TObject);
     procedure bQuedaClick(Sender: TObject);
     procedure bSairClick(Sender: TObject);
-    procedure Label1Click(Sender: TObject);
   private
 
   public
@@ -41,47 +40,53 @@ implementation
 
 { TForm1 }
 
-procedure TForm1.Label1Click(Sender: TObject);
-begin
-
-end;
-
 procedure TForm1.bQuedaClick(Sender: TObject);
 var
   tg : integer;
   Q, hg, Pg : double;
   a, b : double;
 begin
-  //entrada
-  Q  := StrToFloat( eFluxo.Text);
-  hg := StrToFloat( eAltura.Text );
-  tg := RadioGroup1.ItemIndex;
+  try
+    //entrada
+    if not LerPositivo(eFluxo, 'Fluxo de ar', Q) then Exit;
+    if not LerPositivo(eAltura, 'Altura', hg) then Exit;
+    tg := RadioGroup1.ItemIndex;
+    if not SelecaoValida(tg, 4, 'o tipo de grao') then Exit;
 
-  //processamento
-  case tg of
-       0:begin
-         a := 0.722;
-         b := 0.197;
-       end;
-       1:begin
-         a := 0.583;
-         b := 0.512;
-       end;
-       2: begin
-         a := 0.333;
-         b := 0.302;
-       end;
-       3: begin
-         a := 0.825;
-         b := 0.164;
-       end;
+    //processamento
+    case tg of
+         0:begin
+           a := 0.722;
+           b := 0.197;
+         end;
+         1:begin
+           a := 0.583;
+           b := 0.512;
+         end;
+         2: begin
+           a := 0.333;
+           b := 0.302;
+         end;
+         3: begin
+           a := 0.825;
+           b := 0.164;
+         end;
+    end;
+
+    if (1 + b * Q) <= 1 then
+    begin
+      ShowMessage('O fluxo de ar e muito pequeno para o calculo.');
+      Exit;
+    end;
+    Pg := (a*sqr(Q)*hg)/ln(1+b*Q);
+    if not ResultadoValido(Pg) then Exit;
+
+    //saida
+    eQueda.Text:= FloatToStr( Pg );
+  except
+    on E: EMathError do
+      ShowMessage('Os valores informados excedem os limites do calculo.');
   end;
-
-  Pg := (a*sqr(Q)*hg)/ln(1+b*Q);
-
-  //saida
-  eQueda.Text:= FloatToStr( Pg );
-
 end;
 
 procedure TForm1.bSairClick(Sender: TObject);
@@ -94,7 +99,7 @@ begin
   eQueda.Text := '0';
   eAltura.Text := '0';
   eFluxo.Text  := '0';
+  RadioGroup1.ItemIndex := -1;
 end;
 
 end.
-

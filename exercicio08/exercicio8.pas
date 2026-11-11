@@ -5,7 +5,7 @@ unit exercicio8;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Entradas, Calculos;
 
 type
 
@@ -57,32 +57,29 @@ implementation
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
-  popiA, popiB, popA, popB, taxaA, taxaB: double;
-  tempo: integer;
+  popiA, popiB, popA, popB, taxaA, taxaB: Double;
+  tempo: Integer;
+  erro: string;
+
 begin
-  // entrada
-  popiA:= StrToFloat(Epopia.Text);
-  popiB:= StrToFloat(Epopib.Text);
-  taxaA:= StrToFloat(Etaxaa.Text);
-  taxaB:= StrToFloat(Etaxab.Text);
-  //processamento
-  taxaA:=taxaA/100+1;
-  taxaB:=taxaB/100+1;
-  tempo:= 0;
-  popA:=popiA;
-  popB:=popiB;
-  while (popA<=popB) do
-  begin
-    popA:=popA * taxaA;
-    popB:=popB * taxaB;
-    tempo:= tempo + 1;
+  try
+    if not LerPositivo(Epopia, 'Populacao inicial A', popiA) then Exit;
+    if not LerPositivo(Epopib, 'Populacao inicial B', popiB) then Exit;
+    if not LerNaoNegativo(Etaxaa, 'Taxa A', taxaA) then Exit;
+    if not LerNaoNegativo(Etaxab, 'Taxa B', taxaB) then Exit;
+    if not SimularPopulacao(popiA, popiB, taxaA, taxaB,
+      tempo, popA, popB, erro) then
+    begin
+      ShowMessage(erro);
+      Exit;
+    end;
+    Etempo.Text := IntToStr(tempo);
+    Epopa.Text := FloatToStr(popA);
+    Epopb.Text := FloatToStr(popB);
+  except
+    on E: EMathError do
+      ShowMessage('Os valores informados excedem os limites do calculo.');
   end;
-
-  //saida
-  Etempo.Text:=IntToStr(tempo);
-  Epopa.Text:=FloatToStr(popA);
-  Epopb.Text:=FloatToStr(popB);
-
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
@@ -102,24 +99,3 @@ begin
 end;
 
 end.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

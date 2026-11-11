@@ -5,7 +5,7 @@ unit exemplo4;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Entradas, Calculos;
 
 type
 
@@ -21,7 +21,6 @@ type
     Label3: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-    procedure Label2Click(Sender: TObject);
   private
 
   public
@@ -37,40 +36,44 @@ implementation
 
 { TForm1 }
 
-procedure TForm1.Label2Click(Sender: TObject);
-begin
-
-end;
-
 procedure TForm1.Button1Click(Sender: TObject);
 var
    F, C : double;
 begin
-     //recuperação de variáveis
-     F := StrToFloat( EgrausF.Text );
+  try
+       //recuperação de variáveis
+       if not LerReal(EgrausF, 'Temperatura em Fahrenheit', F) then Exit;
 
-     //processamento
-     C := 5/9*(F-32);
+       //processamento
+       C := 5/9*(F-32);
 
-     //saida
-     EgrausC.Text := FloatToStr(C);
-
+       //saida
+       if not ResultadoValido(C) then Exit;
+       EgrausC.Text := FloatToStr(C);
+  except
+    on E: EMathError do
+      ShowMessage('Os valores informados excedem os limites do calculo.');
+  end;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 var
    C, F: double;
 begin
-     //recuperação de entradas
-     C := StrToFloat( EgrausC.Text );
+  try
+       //recuperação de entradas
+       if not LerReal(EgrausC, 'Temperatura em Celsius', C) then Exit;
 
-     //processamento
-     F := 1.8*C+32;
+       //processamento
+       F := 1.8*C+32;
 
-     //Saída
-     EgrausF.Text := FloatToStr(F);
-
+       //Saída
+       if not ResultadoValido(F) then Exit;
+       EgrausF.Text := FloatToStr(F);
+  except
+    on E: EMathError do
+      ShowMessage('Os valores informados excedem os limites do calculo.');
+  end;
 end;
 
 end.
-

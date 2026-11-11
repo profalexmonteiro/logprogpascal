@@ -70,7 +70,7 @@ object Form1: TForm1
     Width = 80
     Alignment = taRightJustify
     TabOrder = 0
-    Text = '0.0'
+    Text = '0'
   end
   object edAltura: TEdit
     Left = 72
@@ -79,9 +79,10 @@ object Form1: TForm1
     Width = 80
     Alignment = taRightJustify
     TabOrder = 1
-    Text = '0.0'
+    Text = '0'
   end
   object mResultado: TMemo
+    ReadOnly = True
     Left = 264
     Height = 90
     Top = 168
@@ -142,7 +143,7 @@ object Form1: TForm1
     Height = 15
     Top = 88
     Width = 25
-    Caption = 'lIMC'
+    Caption = 'IMC'
     ParentColor = False
   end
 end

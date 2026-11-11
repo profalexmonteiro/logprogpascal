@@ -5,7 +5,7 @@ unit exercicio4;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls, Entradas, Calculos;
 
 type
 
@@ -42,7 +42,7 @@ implementation
 
 procedure TForm1.LimparClick(Sender: TObject);
 begin
-     ETemp.Text := '0,0';
+     ETemp.Text := '0';
      MResultado.Lines.Clear;
 end;
 
@@ -50,24 +50,36 @@ procedure TForm1.FparaCClick(Sender: TObject);
 var
   C, F: double;
 begin
-     F := StrToFloat( ETemp.Text );
-     C := 5/9*(F-32);
+  try
+       if not LerReal(ETemp, 'Temperatura em Fahrenheit', F) then Exit;
+       C := 5/9*(F-32);
+       if not ResultadoValido(C) then Exit;
 
-     MResultado.Lines.Add('Temperatura ºF = ' + FloatToStr(F) );
-     MResultado.Lines.Add('Temperatura ºC = ' + FloatToStr(C) );
-     MResultado.Lines.Add(' ');
+       MResultado.Lines.Add('Temperatura ºF = ' + FloatToStr(F) );
+       MResultado.Lines.Add('Temperatura ºC = ' + FloatToStr(C) );
+       MResultado.Lines.Add(' ');
+  except
+    on E: EMathError do
+      ShowMessage('Os valores informados excedem os limites do calculo.');
+  end;
 end;
 
 procedure TForm1.CparaFClick(Sender: TObject);
 var
   C, F: double;
 begin
-     C := StrToFloat( ETemp.Text );
-     F := 1.8*C + 32;
+  try
+       if not LerReal(ETemp, 'Temperatura em Celsius', C) then Exit;
+       F := 1.8*C + 32;
+       if not ResultadoValido(F) then Exit;
 
-     MResultado.Lines.Add('Temperatura ºC = ' + FloatToStr(C) );
-     MResultado.Lines.Add('Temperatura ºF = ' + FloatToStr(F) );
-     MResultado.Lines.Add(' ');
+       MResultado.Lines.Add('Temperatura ºC = ' + FloatToStr(C) );
+       MResultado.Lines.Add('Temperatura ºF = ' + FloatToStr(F) );
+       MResultado.Lines.Add(' ');
+  except
+    on E: EMathError do
+      ShowMessage('Os valores informados excedem os limites do calculo.');
+  end;
 end;
 
 procedure TForm1.SairClick(Sender: TObject);
@@ -76,12 +88,3 @@ begin
 end;
 
 end.
-
-
-
-
-
-
-
-
-

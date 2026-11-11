@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Grids,
-  ExtCtrls, TAGraph, TASeries;
+  ExtCtrls, TAGraph, TASeries, Entradas, Calculos;
 
 type
 
@@ -62,53 +62,50 @@ implementation
 
 procedure TForm1.bCalcularClick(Sender: TObject);
 var
-  popiA, popiB, popA, popB, taxaA, taxaB: double;
-  tempo,tempografico: integer;
+  popiA, popiB, popA, popB, taxaA, taxaB: Double;
+  tempo: Integer;
+  erro: string;
+  ano, limite: Integer;
+  novaA, novaB: Double;
+
 begin
+  try
+    if not LerPositivo(Epopia, 'Populacao inicial A', popiA) then Exit;
+    if not LerPositivo(Epopib, 'Populacao inicial B', popiB) then Exit;
+    if not LerNaoNegativo(Etaxaa, 'Taxa A', taxaA) then Exit;
+    if not LerNaoNegativo(Etaxab, 'Taxa B', taxaB) then Exit;
+    if not SimularPopulacao(popiA, popiB, taxaA, taxaB,
+      tempo, popA, popB, erro) then
+    begin
+      ShowMessage(erro);
+      Exit;
+    end;
+    Etempo.Text := IntToStr(tempo);
+    Epopa.Text := FloatToStr(popA);
+    Epopb.Text := FloatToStr(popB);
 
-  FreeAndNil(FLine);
-  FreeAndNil(FLineB);
-  InitLine;
-
-  // entrada
-  popiA:= StrToFloat(Epopia.Text);
-  popiB:= StrToFloat(Epopib.Text);
-  taxaA:= StrToFloat(Etaxaa.Text);
-  taxaB:= StrToFloat(Etaxab.Text);
-
-  //processamento
-  taxaA:=taxaA/100+1;
-  taxaB:=taxaB/100+1;
-  tempo:= 0;
-  popA:=popiA;
-  popB:=popiB;
-
-
-  while (popA<=popB) do
-  begin
-    Fline.AddXY(tempo,popa,'',clGreen);
-    FlineB.AddXY(tempo,popb,'',clGreen);
-
-    popA:=popA * taxaA;
-    popB:=popB * taxaB;
-    tempo:= tempo + 1;
-  end;
-
-  tempografico := Round(tempo*1.4);
-
-  //saida
-  Etempo.Text:=IntToStr(tempo);
-  Epopa.Text:=FloatToStr(popA);
-  Epopb.Text:=FloatToStr(popB);
-
-  while  (tempo <= tempografico) do
-  begin
-    tempo := tempo + 1;
-    popA:=popA * taxaA;
-    popB:=popB * taxaB;
-
-    Fline.AddXY(tempo,popa,'',clGreen);
-    FlineB.AddXY(tempo,popb,'',clGreen);
+    // Reutiliza as series do formulario e inclui o ano da ultrapassagem.
+    InitLine;
+    Fline.Clear;
+    FlineB.Clear;
+    popA := popiA;
+    popB := popiB;
+    taxaA := 1 + taxaA / 100;
+    taxaB := 1 + taxaB / 100;
+    limite := Round(tempo * 1.4);
+    for ano := 0 to limite do
+    begin
+      Fline.AddXY(ano, popA);
+      FlineB.AddXY(ano, popB);
+      if ano = limite then Break;
+      if not ProximaPopulacao(popA, taxaA, novaA) or
+        not ProximaPopulacao(popB, taxaB, novaB) then Break;
+      popA := novaA;
+      popB := novaB;
+    end;
+  except
+    on E: EMathError do
+      ShowMessage('Os valores informados excedem os limites do calculo.');
   end;
 end;
 
@@ -121,6 +118,8 @@ begin
   Etempo.Text:='0';
   Epopa.Text:='0';
   Epopb.Text:='0';
+  Fline.Clear;
+  FlineB.Clear;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
@@ -130,44 +129,15 @@ end;
 
 procedure TForm1.InitLine;
 begin
-  Fline := TLineSeries.Create(Chart1);
-  Fline.ShowLines := true;
-  Fline.ShowPoints:= False;
-  Fline.Pointer.Brush.Color := clBlue;
+  Fline.ShowLines := True;
+  Fline.ShowPoints := False;
   Fline.Title := 'Pop. A';
   Fline.SeriesColor := clRed;
-  Chart1.AddSeries(Fline);
-
-  FlineB := TLineSeries.Create(Chart1);
-  FlineB.ShowLines := true;
-  FlineB.ShowPoints:= False;
-  FlineB.Pointer.Brush.Color := clGreen;
+  FlineB.ShowLines := True;
+  FlineB.ShowPoints := False;
   FlineB.Title := 'Pop. B';
   FlineB.SeriesColor := clGreen;
-  Chart1.AddSeries(FlineB);
-
   Chart1.Legend.Visible := True;
 end;
 
 end.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

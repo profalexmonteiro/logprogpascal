@@ -5,7 +5,7 @@ unit exemplo3;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons, Entradas, Calculos;
 
 type
 
@@ -38,19 +38,24 @@ implementation
 
 procedure TForm1.BitBtn1Click(Sender: TObject);
 var
-   nasc, atual, idade : integer;
+  nasc, atual: Integer;
 begin
-     //recuperacao de entradas
-     nasc  := StrToInt( Edit1.Text );
-     atual := StrToInt( Edit2.Text );
-
-     //processamento
-     idade := atual - nasc;
-
-     //saida
-     Edit3.Text := IntToStr(idade);
-
+  if not TryStrToInt(Trim(Edit1.Text), nasc) then
+  begin
+    ShowMessage('Informe um ano de nascimento inteiro valido.');
+    Exit;
+  end;
+  if not TryStrToInt(Trim(Edit2.Text), atual) then
+  begin
+    ShowMessage('Informe um ano atual inteiro valido.');
+    Exit;
+  end;
+  if (nasc < 1) or (atual < nasc) or (atual > 9999) then
+  begin
+    ShowMessage('Use anos entre 1 e 9999, com nascimento anterior ou igual ao ano atual.');
+    Exit;
+  end;
+  Edit3.Text := IntToStr(atual - nasc);
 end;
 
 end.
-

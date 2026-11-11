@@ -5,7 +5,7 @@ unit exemplo2;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons, Entradas, Calculos;
 
 type
 
@@ -16,7 +16,6 @@ type
     BitBtn1: TBitBtn;
     procedure bbSairClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
-    procedure btCalcularClick(Sender: TObject);
   private
 
   public
@@ -32,30 +31,32 @@ implementation
 
 { TForm1 }
 
-procedure TForm1.btCalcularClick(Sender: TObject);
-begin
-
-end;
-
 procedure TForm1.BitBtn1Click(Sender: TObject);
 var
-   s_altura, s_base, s_area : string;
-   area, base, altura : double;
+  texto: string;
+  area, base, altura: Double;
 begin
-     //recuperação de variavéis
-     s_altura := inputBox('Digite a altura','Valor: ','');
-     s_base := inputBox('Digite a base','Valor: ','');
-
-     //processamento
-     base := StrToFloat(s_base);
-     altura := StrToFloat(s_altura);
-
-     area := base*altura/2;
-
-     s_area := FloatToStr(area);
-
-     //saída
-     ShowMessage('A área do triangulo é: ' + s_area);
+  try
+    if not InputQuery('Area do triangulo', 'Altura:', texto) then Exit;
+    if not TentarNumero(texto, altura) or (altura <= 0) then
+    begin
+      ShowMessage('Informe uma altura numerica maior que zero.');
+      Exit;
+    end;
+    texto := '';
+    if not InputQuery('Area do triangulo', 'Base:', texto) then Exit;
+    if not TentarNumero(texto, base) or (base <= 0) then
+    begin
+      ShowMessage('Informe uma base numerica maior que zero.');
+      Exit;
+    end;
+    area := (base / 2) * altura;
+    if not ResultadoValido(area) then Exit;
+    ShowMessage('A area do triangulo e: ' + FloatToStr(area));
+  except
+    on E: EMathError do
+      ShowMessage('Os valores informados excedem os limites do calculo.');
+  end;
 end;
 
 procedure TForm1.bbSairClick(Sender: TObject);
@@ -64,4 +65,3 @@ begin
 end;
 
 end.
-
